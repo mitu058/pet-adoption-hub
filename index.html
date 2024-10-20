@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+     <!-- font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+              
+               
+                main: '#0E7A81',
+               
+                              
+              },
+              fontFamily: {
+                fontMain: ['Lato'],
+              }
+            }
+          }
+        }
+      </script>
+</head>
+
+<body class="font-fontMain">
+  <header class="container mx-auto py-10 px-4">
+    <nav class="flex justify-between">
+    <div class="flex space-x-3 items-center">
+        <img class="w-6 h-5" src="./images/logo.webp" alt="">
+        <h1 class="text-2xl font-bold">Peddy</h1>
+    </div> 
+  <div id="menu-items" class="lg:block md:block hidden">
+    <ul class="flex space-x-12 text-lg font-semibold text-center text-gray-500  ">
+      <li class="cursor-pointer">Home</li>
+      <li class="cursor-pointer">Shop</li>
+      <li class="cursor-pointer">Contact</li> 
+  </ul> 
+  </div>
+    <div>
+        <svg class="w-8 lg:block md:block hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>   
+    </div>
+    <div class="lg:hidden md:hidden">
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <i id="menu-btn" class="fa-solid fa-bars py-1 px-2 text-xl rounded-full bg-main text-white   "></i>
+            </div>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-200 font-semibold  rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li><a>Home</a></li>
+            <li><a>Shop</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+    </div>
+    </nav>
+    <div class="text-center pt-16 space-y-5">
+        <h3 class="text-xl font-semibold opacity-80">Bringing Families Together ❤️‍🔥</h3>
+        <h1 class="text-5xl font-bold">Your Path to Adoption <br> Starts Here</h1>
+        <p class="font-semibold opacity-80 text-lg"> This journey involves several important steps, including understanding different types of adoption, <br> completing legal requirements, and preparing for the emotional aspects of welcoming a new family member</p>
+        <button id="view-more-btn" class="py-3 px-4 bg-main text-white rounded-lg font-semibold">View More</button>
+    </div>
+    <div class="flex justify-center items-center py-8">
+        <img class="" src="./images/pet.webp" alt="">
+    </div>
+  </header>
+  <main id="main-section" class="container mx-auto my-14 px-4">
+    <div class="text-center space-y-3">
+        <h1 class="text-3xl font-bold">Adopt  Your  Best Friend</h1>
+        <p class="font-semibold opacity-80">The adoption process is simple and guided, ensuring that every pet finds a caring home where they can grow. <br> By adopting, you not only gain a new best friend but also contribute to reducing  the number of animals in <br>shelters, giving them a chance at a happy, fulfilling life.</p>
+    </div>
+
+    <nav id="category" class="pt-14 pb-8 grid lg:grid-cols-4 grid-cols-2 gap-4 place-items-center">
+    </nav>
+
+    <!-- sort price -->
+    <div class="flex justify-between">
+  <h1 class="text-lg font-bold">Best Deal For You</h1>
+  <button onclick="sortByPrice()" class="py-3 px-4 bg-main text-white rounded-lg font-semibold">Sort by Price</button>
+    </div>
+   
+      <!-- Spinner -->
+      <div  id="spinner" class="text-center hidden">
+        <span class="loading loading-bars loading-lg"></span>
+      </div> 
+ <!-- all pets card -->
+  <div  class="container mx-auto my-10">
+    <div class="flex gap-4 lg:flex-row flex-col "> 
+      <div id="AllPets"  class="w-full lg:w-3/4">
+       
+       
+      </div>
+
+  <!-- click image -->
+      <div id="petBox" class="w-full lg:w-1/4">
+        <div  class="border-2 rounded-lg">
+          <div class="bg-white overflow-hidden">
+            <div id="pet-container" class="grid  grid-cols-2 gap-2 p-4 ">
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+  <footer class="bg-[#131313] mt-28">
+    <div class="container mx-auto flex justify-around md:flex-row lg:flex-row flex-col gap-10  py-28 px-4">
+      
+          <div class="space-y-2">
+            <div class="flex space-x-2 items-center">
+                <img class="w-6 h-5" src="./images/logo.webp" alt="">
+                  <h1 class="text-white text-2xl font-bold">Peddy</h1>
+              </div>
+                  <div class="text-white text-base font-semibold">
+                      <p>Location: av. Washington 165, NY CA 54003</p>
+                         <p> Phone: +31 85 964 47 25</p>
+                          <p>Email: info@yourdomain.com</p>
+                          <p>Openings hours: 9.00 AM - 5.00 PM</p>
+                  </div>
+          
+                  <div class="flex space-x-3">
+                      <img class="w-6 h-6" src="./icon/facebook.png" alt="">
+                      <img class="w-6 h-6" src="./icon/tweeter2.png" alt="">
+                      <img class="w-6 h-6" src="./icon/youtube logo.png" alt="">
+                      <img class="w-6 h-6" src="./icon/instagram.png" alt="">
+                  </div>
+         </div>
+      
+             <div class="text-white">
+                <h1 class="font-bold text-lg pb-5">Useful Links</h1>
+                <ul class="space-y-2">
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Animals</li>
+                    <li>Foundation</li>
+                    <li>Contact</li>
+                </ul>
+             </div>
+             
+              <div class="space-y-3">
+                <h1 class="text-white text-lg font-bold">Drop a Message</h1>
+                <input class="py-2 px-4  rounded-lg" type="text" placeholder="Enter Your Email">
+                <div><button class="py-2 px-16 bg-main text-white rounded-lg font-semibold">Subscriber</button></div>
+              </div>
+        
+      </div>
+  </footer> 
+    
+    <button id="showModaldata" class="btn hidden" onclick="customModal.showModal()">open modal</button>
+    <dialog id="customModal" class="modal  modal-bottom sm:modal-middle ">
+      <div class="modal-box">
+        <div id="modal-content"></div>
+        <div class="modal-action flex justify-center">
+          <form method="dialog" class="w-full ">
+            <button class="btn text-main w-full font-bold text-lg ">Cancle</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+<!-- adopt modal -->
+<dialog id="Modal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box bg-white py-8  rounded-lg space-y-3  text-center ">
+    <img class="inline-block " src="./images/agreement.png" alt="">
+    <h3 class="text-3xl font-bold">Congrates</h3>
+    <p class="text-base font-bold">Addoption Process is Start For Your Pet</p>
+     <span id="Display-Count" class="font-bold text-5xl"></span> 
+  </div>
+</dialog>
+  
+<script src="./utilities.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
